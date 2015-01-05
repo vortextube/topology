@@ -1,0 +1,318 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 500 500
+%%EndComments
+
+/black	{0 0 0 setrgbcolor} def
+/datumlength	5	def
+
+/drawdatum
+	{
+	gsave
+	0 datumlength neg moveto
+	0 datumlength lineto black stroke
+	datumlength neg  0 moveto
+	datumlength 0 lineto black stroke
+	grestore
+	} def
+
+/polycutout
+	{
+	/polyradius exch def
+	/sides exch def
+	gsave
+	drawdatum
+	sides polyradius clockwisenicks
+	sides polyradius counterclockwisenicks
+	%sides polyradius completetabs
+	%6 200 createfolds
+	grestore
+	} def
+
+
+/clockwisenicks
+	{
+	/myradius exch def
+	/mysides exch def
+	/start 0 def
+	/step 360 mysides div def
+	/stop 360 step sub def
+
+	start step stop 	{
+			/myangle exch def
+			/myx myangle cos myradius mul def
+			/myy myangle sin myradius mul def
+			gsave
+			myx myy translate
+			drawdatum
+			/sumofinternalangles mysides 2 sub 180 mul def
+			/anglepervertex sumofinternalangles mysides div def
+			/halfanglepervertex anglepervertex 2 div def
+			/offset 180 halfanglepervertex sub def
+			myangle offset sub rotate
+			tab
+			grestore
+			} for
+	} def
+
+/counterclockwisenicks
+	{
+	/myradius exch def
+	/mysides exch def
+	/start 0 def
+	/step 360 mysides div def
+	/stop 360 step sub def
+	start step stop 	{
+			/myangle exch def
+			/myx myangle cos myradius mul def
+			/myy myangle sin myradius mul def
+			gsave
+			myx myy translate
+			drawdatum
+			/sumofinternalangles mysides 2 sub 180 mul def
+			/anglepervertex sumofinternalangles mysides div def
+			/halfanglepervertex anglepervertex 2 div def
+			myangle halfanglepervertex sub rotate
+			mirroredtab
+			grestore
+			} for
+	} def
+
+/completetabs
+	{
+	/myradius exch def
+	/mysides exch def
+	/start 0 def
+	/step 360 mysides div def
+	/stop 360 step sub def
+	start step stop 	{
+			/myangle exch def
+			/myx myangle cos myradius mul def
+			/myy myangle sin myradius mul def
+			gsave
+			drawdatum
+			myx myy translate
+			myangle step sub rotate
+			mirroredtab
+			grestore
+			} for
+	} def
+
+/tab
+	{
+	/radius		9.25	def
+	/tabheight		15	def
+	/notchdepth		15	def
+	/notchwidth		4	def
+	/Helvetica findfont 4 scalefont setfont
+	5 10 moveto
+	(Robb Hill Creations) show
+	0 radius neg moveto
+	0 0 radius 270 0 arc
+	notchdepth 0 lineto
+	notchdepth notchwidth lineto
+	/xintersect radius radius mul notchwidth notchwidth mul sub sqrt def
+	/angle notchwidth xintersect atan def
+	xintersect notchwidth lineto
+	0 0 radius angle 90 arc
+	0 tabheight lineto
+	360 sides div 2 div sin polyradius mul 2 mul tabheight lineto black stroke 
+	} def
+
+
+/mirroredtab
+	{
+      gsave
+	1 neg 1 scale
+	/radius		9.25	def
+	/tabheight		15	def
+	/notchdepth		15	def
+	/notchwidth		4	def
+	/Helvetica findfont 5 scalefont setfont
+	0 radius neg moveto
+	0 0 radius 270 0 arc
+	notchdepth 0 lineto
+	notchdepth notchwidth lineto
+	/xintersect radius radius mul notchwidth notchwidth mul sub sqrt def
+	/angle notchwidth xintersect atan def
+	xintersect notchwidth lineto
+	0 0 radius angle 90 arc
+	0 tabheight lineto
+	360 sides div 2 div sin polyradius mul 2 mul tabheight lineto black stroke 
+	grestore
+	} def
+
+
+.5 setlinewidth
+/baseradius 75 def
+/3polyfactor 0.57735 def
+/4polyfactor 0.70710 def
+/5polyfactor 0.85065 def
+/6polyfactor 1.00000 def
+/7polyfactor 1.15238 def
+/8polyfactor 1.30656 def
+
+gsave
+100 750  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+225 750  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+350 750  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+475 750  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+
+
+gsave
+100 625  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+225 625  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+350 625  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+475 625  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+
+gsave
+100 500  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+225 500  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+350 500  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+475 500  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+100 375  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+225 375  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+350 375  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+475 375  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+gsave
+
+
+100 250  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+225 250  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+350 250  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+475 250  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+
+100 125  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+225 125  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+350 125  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+gsave
+475 125  translate
+45 rotate
+4 baseradius 4polyfactor mul polycutout
+grestore
+
+
+showpage
+
+
+
+%scale radius to maintan polygon edge length
+% r= (l/2) / (sin(180/n))
+%N	L	r
+%3	1	0.577350564
+%4	1	0.70710725
+%5	1	0.85065143
+%6	1	1.000000766
+%7	1	1.152383343
+%8	1	1.306564011
+%9	1	1.461903384
+%10	1	1.61803531
+

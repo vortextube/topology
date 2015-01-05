@@ -1,0 +1,310 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 500 500
+%%EndComments
+
+%  Open Polykit: - A collection of PostScript programs that		%
+%  will allow one to print, cut out and assemble paper figures	%
+%  that can be attached at thier edges using rubberbands to		%
+%  create solid polyhedra.  Open Poklykit is modeled after the	%
+%  "Poly-Kit by Janos Baracs" that appreared in the "Topologie	%
+%  Structurale (bulletin pubished by the structural topology	%
+%  research group, universiy of montreal), Issue #1, 1979.		%
+%  											%
+%  Please visit http://home.earthlink.net/~vortextube for more	%
+%  information.  You can also contact the author with			%
+%  questions, code submissions, and pictures of models you have	%
+%  built at <vortextube@earthlink.net> Charles Robert (Robb)	%
+%  Hill.										%
+%  											%
+%  Copyright (C) 2000-2001  Charles Robert (Robb) Hill		%
+%  											%
+%  This program is free software; you can redistribute it		%
+%  and/or modify it under the terms of the GNU General Public	%
+%  License as published by						%
+%  the Free Software Foundation; either version 2 of the		%
+%  License, or (at your option) any later version.  This		%
+%  program is distributed in the hope that it will be useful,	%
+%  but WITHOUT ANY WARRANTY; without even the implied warranty	%
+%  of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See	%
+%  the GNU General Public License for more details.			%
+%  											%
+%  You should have received a copy of the GNU General Public	%
+%  License along with this program; if not, write to the Free	%
+%  Software Foundation, Inc., 675 Mass Ave, Cambridge, MA		%
+%  02139, USA.									%
+%											%
+%  "When we speak of free software, we are referring to		%
+%  freedom..."									%
+%  -GPL										%
+
+
+/black	{0 0 0 setrgbcolor} def
+/datumlength	5	def
+
+/drawdatum
+	{
+	gsave
+	0 datumlength neg moveto
+	0 datumlength lineto black stroke
+	datumlength neg  0 moveto
+	datumlength 0 lineto black stroke
+	grestore
+	} def
+
+/polycutout
+	{
+	/polyradius exch def
+	/sides exch def
+	gsave
+	drawdatum
+	sides polyradius clockwisenicks
+	sides polyradius counterclockwisenicks
+	%sides polyradius completetabs
+	%6 200 createfolds
+	grestore
+	} def
+
+
+/clockwisenicks
+	{
+	/myradius exch def
+	/mysides exch def
+	/start 0 def
+	/step 360 mysides div def
+	/stop 360 step sub def
+	start step stop 	{
+			/myangle exch def
+			/myx myangle cos myradius mul def
+			/myy myangle sin myradius mul def
+			gsave
+			myx myy translate
+			drawdatum
+			/sumofinternalangles mysides 2 sub 180 mul def
+			/anglepervertex sumofinternalangles mysides div def
+			/halfanglepervertex anglepervertex 2 div def
+			/offset 180 halfanglepervertex sub def
+			myangle offset sub rotate
+			tab
+			grestore
+			} for
+	} def
+
+/counterclockwisenicks
+	{
+	/myradius exch def
+	/mysides exch def
+	/start 0 def
+	/step 360 mysides div def
+	/stop 360 step sub def
+	start step stop 	{
+			/myangle exch def
+			/myx myangle cos myradius mul def
+			/myy myangle sin myradius mul def
+			gsave
+			myx myy translate
+			drawdatum
+			/sumofinternalangles mysides 2 sub 180 mul def
+			/anglepervertex sumofinternalangles mysides div def
+			/halfanglepervertex anglepervertex 2 div def
+			myangle halfanglepervertex sub rotate
+			mirroredtab
+			grestore
+			} for
+	} def
+
+/completetabs
+	{
+	/myradius exch def
+	/mysides exch def
+	/start 0 def
+	/step 360 mysides div def
+	/stop 360 step sub def
+	start step stop 	{
+			/myangle exch def
+			/myx myangle cos myradius mul def
+			/myy myangle sin myradius mul def
+			gsave
+			drawdatum
+			myx myy translate
+			myangle step sub rotate
+			mirroredtab
+			grestore
+			} for
+	} def
+
+/tab
+	{
+	/radius		9.25	def
+	/tabheight		15	def
+	/notchdepth		15	def
+	/notchwidth		4	def
+	/Helvetica findfont 4 scalefont setfont
+	5 10 moveto
+	(Open Poly Kit) show
+	0 radius neg moveto
+	0 0 radius 270 0 arc
+	notchdepth 0 lineto
+	notchdepth notchwidth lineto
+	/xintersect radius radius mul notchwidth notchwidth mul sub sqrt def
+	/angle notchwidth xintersect atan def
+	xintersect notchwidth lineto
+	0 0 radius angle 90 arc
+	0 tabheight lineto
+	360 sides div 2 div sin polyradius mul 2 mul tabheight lineto black stroke 
+	} def
+
+
+/mirroredtab
+	{
+      gsave
+	1 neg 1 scale
+	/radius		9.25	def
+	/tabheight		15	def
+	/notchdepth		15	def
+	/notchwidth		4	def
+	/Helvetica findfont 5 scalefont setfont
+	0 radius neg moveto
+	0 0 radius 270 0 arc
+	notchdepth 0 lineto
+	notchdepth notchwidth lineto
+	/xintersect radius radius mul notchwidth notchwidth mul sub sqrt def
+	/angle notchwidth xintersect atan def
+	xintersect notchwidth lineto
+	0 0 radius angle 90 arc
+	0 tabheight lineto
+	360 sides div 2 div sin polyradius mul 2 mul tabheight lineto black stroke 
+	grestore
+	} def
+
+
+.5 setlinewidth
+/baseradius 75 def
+/3polyfactor 0.57735 def
+/4polyfactor 0.70710 def
+/5polyfactor 0.85065 def
+/6polyfactor 1.00000 def
+/7polyfactor 1.15238 def
+/8polyfactor 1.30656 def
+
+gsave
+100 700  translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+225 725  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+350 700  translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+475 725  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+100 550  translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+225 575  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+350 550  translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+475 575  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+
+gsave
+100 400  translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+225 425  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+350 400  translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+475 425  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+100 250  translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+225 275  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+350 250  translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+475 275  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+100 100  translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+225 125  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+350 100    translate
+90 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+gsave
+475 125  translate
+270 rotate
+3 baseradius 3polyfactor mul polycutout
+grestore
+
+showpage
